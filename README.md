@@ -4,6 +4,19 @@
 
 This repository contains data and code to explore patterns in aquatic invertebrate abundance at North Campus Open Space.
 
+To work with the code in this repository, you will need the following packages:
+
+```
+library(tidyverse)
+library(here)
+library(janitor)
+library(snakecase)
+library(scales)
+library(readxl)
+library(naniar)
+library(patchwork)
+```
+
 ## Data and file information
 
 ```
