@@ -61,6 +61,39 @@ water_quality <- read_xlsx(here("data", "Aquatic Sampling Data-2026-03-10.xlsx")
                            sheet = "Water Quality",
                            na = c("", "n/a", "N/A", "over", "173+")) 
 
+# time is in decimals when read in with here
+# default is to read in many columns as characters
+# 
+# must manually say what na values are (see above)
+# 
+readxlsx_ex_water_quality <- read_xlsx(here("data", "Aquatic Sampling Data-2026-03-10.xlsx"),
+                              sheet = "Water Quality")
+
+
 
 ```
+
+
+# 2. Cleaning
+
+## `sites` object
+
+Goal: create a new object from `sites` that only includes NCOS sites
+
+Use: filter downstream data frames using new object
+
+```{r ncos site object}
+
+# create new object from sites
+ncos_sites <- sites |> 
+  # filter only include NCOS sites sampled quarterly (4x/year)
+  filter(sector == "NCOS" & sampling_frequency == "Quarterly")
+
+
+```
+
+
+
+
+
 
