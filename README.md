@@ -23,7 +23,7 @@ library(patchwork)
 .
 ├── README.md
 ├── code                                          
-│   ├── in-class-template.pdf                  # key (comes with repo)
+│   ├── in-class-template.pdf                 
 │   └── in-class-template.qmd
 │   ├── week-05_in-class-KEY.pdf                  # key (comes with repo)
 │   └── week-05_in-class-KEY.qmd
