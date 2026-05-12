@@ -1,14 +1,11 @@
 ---
 title: "Individual Assignment 5"
-date: "11 May 2026"
 author: "Rebecca Martinez"
-format: 
+date: "11 May 2026"
+format:
   pdf:
-    include-in-header: 
-       text: |
-         \usepackage{fvextra}
-         \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
-         \DefineVerbatimEnvironment{OutputCode}{Verbatim}{breaklines,commandchars=\\\{\}}
+    code-overflow: wrap
+editor: source
 execute:
   message: false
   warning: false
@@ -317,9 +314,9 @@ copepods <- ggplot(data = copepod_data,
 Goal: create a plot showing differences between sites in ostracod abundance.
 
 - x-axis: `site_full`
-- y-axis: `log_ave_lit`
+- y-axis: `log_ave_lit` (log + 1 transformed average abundance/L)
 - geometry to represent average abundance/L: jittered points using `geom_jitter()`
-- geometry to represent medians: larger summary points using `stat_summary(fun = median)`
+- geometry to represent medians: larger colored diamond points using `stat_summary(fun = median)`
 
 
 ### b. Wrangle data
@@ -342,3 +339,49 @@ ostracod_data |>
 ```
 
 
+### c. Code figure
+
+```{r ostracod visual}
+
+# create ostracod plot object
+ostracods <- ggplot(data = ostracod_data,
+                    
+                    # x-axis: site
+                    # y-axis: log-transformed average abundance per liter
+                    mapping = aes(x = site_full,
+                                  y = log_ave_lit)) +
+  
+  # show individual average abundance/L measurements
+  geom_jitter(height = 0,
+              width = 0.1,
+              shape = 21) +
+  
+  # show median abundance for each site with a visually distinct point
+  stat_summary(fun = median,
+               geom = "point",
+               color = "purple",
+               shape = 18,
+               size = 4) +
+  
+  # wrap long site labels
+  scale_x_discrete(labels = label_wrap(width = 15)) +
+  
+  # label axes and add title
+  labs(x = "Site",
+       y = "log + 1 transformed average abundance/L",
+       title = "Ostracods") +
+  
+  # use theme different from default
+  theme_bw()
+
+```
+
+
+### d. Create a multipanel figure
+
+```{r multipanel figure}
+
+# combine salinity, copepod, and ostracod plots
+salinity / (copepods | ostracods)
+
+```
