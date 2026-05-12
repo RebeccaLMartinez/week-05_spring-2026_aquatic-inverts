@@ -13,3 +13,45 @@ execute:
   message: false
   warning: false
 ---
+
+
+
+# 1. Setup
+
+## Packages
+
+```{r packages}
+
+# general use and cleaning:
+
+library(tidyverse)
+
+library(here)
+
+library(janitor)
+
+library(snakecase)
+
+# wrap axis labels
+library(scales)
+
+# read in .xlsx  files
+library(readxl)
+
+# visualize missing data
+library(naniar)
+
+# arrange plots
+library(patchwork)
+
+
+```
+
+
+## Data
+
+
+
+
+
+# 2. Cleaning
