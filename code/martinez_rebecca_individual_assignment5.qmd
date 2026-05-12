@@ -208,3 +208,107 @@ aq_ins_clean <- aq_ins |>
          site_full = fct_rev(site_full))
 
 ```
+
+# 3. Class figures needed for assignment
+
+## Site salinity
+
+```{r salinity visual}
+
+# create salinity plot object
+salinity <- ggplot(data = aq_ins_clean,
+                   
+                   # x-axis: site
+                   # y-axis: median salinity
+                   mapping = aes(x = site_full,
+                                 y = med_sal)) +
+  
+  # show individual salinity measurements for each survey
+  geom_jitter(height = 0,
+              width = 0.1,
+              shape = 21) +
+  
+  # wrap long site names on x-axis
+  scale_x_discrete(labels = label_wrap(width = 15)) +
+  
+  # show median salinity for each site
+  stat_summary(fun = median,
+               geom = "point",
+               color = "red",
+               shape = 18,
+               size = 4) +
+  
+  # label axes and add title
+  labs(x = "Site",
+       y = "Median salinity (ppt)",
+       title = "Site salinity") +
+  
+  # use theme different from default
+  theme_bw() +
+  
+  # angle x-axis text for readability
+  theme(axis.text.x = element_text(angle = 45,
+                                   hjust = 1))
+
+```
+
+## Copepod abundance
+
+```{r copepod cleaning}
+
+# create data frame for copepod abundance
+copepod_data <- aq_ins_clean |> 
+  
+  # keep only copepods
+  filter(taxon == "copepod") |> 
+  
+  # log + 1 transform average abundance per liter
+  mutate(log_ave_lit = log(ave_lit + 1))
+
+```
+
+```{r copepod visual}
+
+# create copepod plot object
+copepods <- ggplot(data = copepod_data,
+                   
+                   # x-axis: site
+                   # y-axis: log-transformed average abundance per liter
+                   mapping = aes(x = site_full,
+                                 y = log_ave_lit)) +
+  
+  # show individual average abundance/L measurements
+  geom_jitter(height = 0,
+              width = 0.1,
+              shape = 21) +
+  
+  # show median abundance for each site
+  stat_summary(fun = median,
+               geom = "point",
+               color = "blue",
+               shape = 18,
+               size = 4) +
+  
+  # wrap long site names on x-axis
+  scale_x_discrete(labels = label_wrap(width = 15)) +
+  
+  # label axes and add title
+  labs(x = "Site",
+       y = "log + 1 transformed average abundance/L",
+       title = "Copepods") +
+  
+  # use theme different from default
+  theme_bw() +
+  
+  # angle x-axis text for readability
+  theme(axis.text.x = element_text(angle = 45,
+                                   hjust = 1))
+
+
+```
+
+
+
+
+
+
