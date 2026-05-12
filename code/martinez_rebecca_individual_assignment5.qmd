@@ -15,43 +15,55 @@ execute:
 ---
 
 
-
 # 1. Setup
 
 ## Packages
 
 ```{r packages}
 
-# general use and cleaning:
-
+# general data wrangling and plotting
 library(tidyverse)
 
+# file paths
 library(here)
 
+# clean column names
 library(janitor)
 
+# convert taxon names to snake case
 library(snakecase)
 
-# wrap axis labels
+# wrap long axis labels
 library(scales)
 
-# read in .xlsx  files
+# read Excel files
 library(readxl)
 
-# visualize missing data
-library(naniar)
-
-# arrange plots
+# combine plots
 library(patchwork)
-
 
 ```
 
-
 ## Data
 
+```{r data}
 
+# read in taxonomic information
+taxon_list <- read_csv(here("data", "taxon_list.csv")) 
 
+# read in aquatic invertebrate data
+aq_ins <- read_xlsx(here("data", "Aquatic Sampling Data-2026-03-10.xlsx"),
+                    sheet = "Aquatic Insects") 
 
+# read in site information
+sites <- read_xlsx(here("data", "Aquatic Sampling Data-2026-03-10.xlsx"),
+                   sheet = "sites")
 
-# 2. Cleaning
+# read in water quality data
+# na values are included so unusual entries are treated as missing
+water_quality <- read_xlsx(here("data", "Aquatic Sampling Data-2026-03-10.xlsx"),
+                           sheet = "Water Quality",
+                           na = c("", "n/a", "N/A", "over", "173+")) 
+
+```
+
