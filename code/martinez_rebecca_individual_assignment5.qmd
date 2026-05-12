@@ -250,7 +250,8 @@ salinity <- aq_ins_clean |>
   
   # angle x-axis text for readability
   theme(axis.text.x = element_text(angle = 45,
-                                   hjust = 1))
+                                   hjust = 1),
+        axis.title.x = element_blank())
 
 ```
 
@@ -304,7 +305,8 @@ copepods <- ggplot(data = copepod_data,
   
   # angle x-axis text for readability
   theme(axis.text.x = element_text(angle = 45,
-                                   hjust = 1))
+                                   hjust = 1),
+        axis.title.x = element_blank())
 
 
 ```
@@ -381,7 +383,8 @@ ostracods <- ggplot(data = ostracod_data,
   
   # angle x-axis text for readability
   theme(axis.text.x = element_text(angle = 45,
-                                   hjust = 1))
+                                   hjust = 1),
+        axis.title.x = element_blank())
 
 ```
 
