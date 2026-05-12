@@ -3,11 +3,12 @@ title: "Individual Assignment 5"
 author: "Rebecca Martinez"
 date: "11 May 2026"
 format:
-  pdf: 
+  pdf:
     fig-width: 10
     fig-height: 8
+    code-overflow: wrap
 editor: source
-execute: 
+execute:
   message: false
   warning: false
 ---
