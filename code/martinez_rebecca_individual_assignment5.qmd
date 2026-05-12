@@ -67,3 +67,30 @@ water_quality <- read_xlsx(here("data", "Aquatic Sampling Data-2026-03-10.xlsx")
 
 ```
 
+# 2. Cleaning
+
+## NCOS sites
+
+```{r ncos sites}
+
+# create object with only NCOS quarterly sampling sites
+ncos_sites <- sites |> 
+  
+  # keep sites in the NCOS sector that were sampled quarterly
+  filter(sector == "NCOS" &
+           sampling_frequency == "Quarterly")
+
+```
+
+## Taxon list
+
+```{r taxon list cleaning}
+
+# clean taxon names so they match the aquatic invertebrate data
+taxon_list_clean <- taxon_list |> 
+  
+  # convert verbatim taxon names to snake case
+  mutate(verbatim_name = to_any_case(verbatim_name,
+                                     case = "snake"))
+
+```
