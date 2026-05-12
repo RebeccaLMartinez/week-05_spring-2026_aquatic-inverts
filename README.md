@@ -15,6 +15,7 @@ library(scales)
 library(readxl)
 library(naniar)
 library(patchwork)
+library(viridis)
 ```
 
 ## Data and file information
