@@ -3,14 +3,14 @@ title: "Individual Assignment 5"
 author: "Rebecca Martinez"
 date: "11 May 2026"
 format:
-  pdf:
-    code-overflow: wrap
+  pdf: 
+    fig-width: 10
+    fig-height: 8
 editor: source
-execute:
+execute: 
   message: false
   warning: false
 ---
-
 
 # 1. Setup
 
@@ -212,13 +212,15 @@ aq_ins_clean <- aq_ins |>
 
 ```{r salinity visual}
 
-# create salinity plot object
-salinity <- ggplot(data = aq_ins_clean,
-                   
-                   # x-axis: site
-                   # y-axis: median salinity
-                   mapping = aes(x = site_full,
-                                 y = med_sal)) +
+# create object from aq_ins_clean
+salinity <- aq_ins_clean |>
+  
+  # remove rows only if median salinity is missing
+  filter(!is.na(med_sal)) |>
+  
+  # create plot
+  ggplot(mapping = aes(x = site_full,
+                       y = med_sal)) +
   
   # show individual salinity measurements for each survey
   geom_jitter(height = 0,
@@ -372,12 +374,16 @@ ostracods <- ggplot(data = ostracod_data,
        title = "Ostracods") +
   
   # use theme different from default
-  theme_bw()
+  theme_bw() +
+  
+  # angle x-axis text for readability
+  theme(axis.text.x = element_text(angle = 45,
+                                   hjust = 1))
 
 ```
 
 
-### d. Create a multipanel figure
+### d. Create multipanel figure
 
 ```{r multipanel figure}
 
