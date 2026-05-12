@@ -39,6 +39,9 @@ library(readxl)
 # combine plots
 library(patchwork)
 
+# custom colors
+library(viridis)
+
 ```
 
 ## Data
@@ -400,3 +403,66 @@ Copepod abundance is relatively high at South of Venoco Bridge, South of Phelps 
 
 **Relationship between ostracod abundance and salinity:**
 Ostracod abundance appears to be higher at lower-salinity sites rather than higher-salinity sites. This is shown by the low red median salinity points at South of Phelps Bridge and Devereux Creek, where ostracod medians are highest, while the Venoco Bridge sites have higher salinity but lower ostracod medians.
+
+  
+## 2. Visualizing total abundance as a function of salinity
+
+### a. Plan the figure
+
+Goal: create a plot showing log-transformed average abundance/L as a function of salinity for each taxon.
+
+- x-axis: `med_sal` (median salinity in ppt)
+- y-axis: `log_ave_lit` (log + 1 transformed average abundance/L)
+- color: `taxon_title`
+- geometry: points using `geom_point()`
+- facets: `facet_wrap(~ taxon_title, scales = "free")`
+
+
+### b. Wrangle data
+
+```{r abundance salinity wrangling}
+
+# create data frame for abundance and salinity plot
+abundance_salinity <- aq_ins_clean |>
+  
+  # remove rows only if median salinity is missing
+  filter(!is.na(med_sal)) |>
+  
+  # create cleaned columns needed for plotting
+  mutate(
+    
+    # log + 1 transform average abundance per liter
+    log_ave_lit = log(ave_lit + 1),
+    
+    # make taxon names easier to read
+    taxon_title = str_replace_all(taxon, "_", " "),
+    
+    # convert taxon names to title case
+    taxon_title = str_to_title(taxon_title)
+  ) |>
+  
+  # order taxa by maximum abundance
+  mutate(taxon_title = fct_reorder(taxon_title,
+                                   ave_lit,
+                                   .fun = max,
+                                   .desc = TRUE)) |>
+  
+  # keep only columns needed for figure
+  select(date,
+         site,
+         site_full,
+         med_sal,
+         taxon,
+         taxon_title,
+         ave_lit,
+         log_ave_lit)
+
+# display 10 random rows from data frame
+abundance_salinity |>
+  slice_sample(n = 10)
+
+```
+
+
+
+
