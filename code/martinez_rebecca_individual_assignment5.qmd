@@ -391,3 +391,12 @@ ostracods <- ggplot(data = ostracod_data,
 salinity / (copepods | ostracods)
 
 ```
+
+
+### e. Interpretation
+
+**Differences between sites in copepod and ostracod abundance:**
+Copepod abundance is relatively high at South of Venoco Bridge, South of Phelps Bridge, and Devereux Creek, shown by the higher blue median points. Ostracod abundance is highest at South of Phelps Bridge and Devereux Creek, where the purple median points are higher than the other sites and several individual observations are also high.
+
+**Relationship between ostracod abundance and salinity:**
+Ostracod abundance appears to be higher at lower-salinity sites rather than higher-salinity sites. This is shown by the low red median salinity points at South of Phelps Bridge and Devereux Creek, where ostracod medians are highest, while the Venoco Bridge sites have higher salinity but lower ostracod medians.
