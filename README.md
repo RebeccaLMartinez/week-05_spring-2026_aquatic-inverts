@@ -22,15 +22,18 @@ library(patchwork)
 ```
 .
 ├── README.md
-├── code                                          
-│   ├── in-class-template.pdf                 
-│   └── in-class-template.qmd
-│   ├── week-05_in-class-KEY.pdf                  # key (comes with repo)
+├── code
+│   ├── in-class-template.pdf
+│   ├── in-class-template.qmd
+│   ├── martinez_rebecca_individual_assignment5.pdf
+│   ├── martinez_rebecca_individual_assignment5.qmd
+│   ├── week-05_in-class-KEY.pdf
 │   └── week-05_in-class-KEY.qmd
 ├── data
-│   ├── Aquatic Sampling Data-2026-03-10.xlsx     # invertebrate survey data
-│   └── taxon_list.csv                            # taxonomic information
+│   ├── Aquatic Sampling Data-2026-03-10.xlsx
+│   └── taxon_list.csv
 └── week-05_spring-2026_aquatic-inverts.Rproj
+
 ```
 
 ## Rendered output
