@@ -422,7 +422,7 @@ Goal: create a plot showing log-transformed average abundance/L as a function of
 
 ```{r abundance salinity wrangling}
 
-# create data frame for abundance and salinity plot
+# create object for abundance and salinity plot
 abundance_salinity <- aq_ins_clean |>
   
   # remove rows only if median salinity is missing
@@ -463,6 +463,51 @@ abundance_salinity |>
 
 ```
 
+
+### c. Code your figure
+
+```{r abundance salinity figure}
+
+# create plot showing abundance as a function of salinity
+abundance_salinity_plot <- ggplot(data = abundance_salinity,
+                                  
+                                  # x-axis: median salinity
+                                  # y-axis: log-transformed average abundance per liter
+                                  # color by taxon
+                                  mapping = aes(x = med_sal,
+                                                y = log_ave_lit,
+                                                color = taxon_title)) +
+  
+  # show individual abundance/salinity observations
+  geom_point() +
+  
+  # create separate panels for each taxon with free x- and y-axis scales
+  facet_wrap(~ taxon_title,
+             scales = "free") +
+  
+  # use non-default color palette
+  scale_color_viridis_d(option = "turbo") +
+  
+  # label x- and y-axes
+  labs(x = "Median salinity (ppt)",
+       y = "log + 1 transformed average abundance/L",
+       title = "Invertebrate Abundance as a Function of Salinity") +
+  
+  # use theme different from default
+  theme_bw() +
+  
+  # remove legend because taxa are labeled in facet titles
+  theme(legend.position = "none")
+
+# display plot
+abundance_salinity_plot
+
+```
+
+
+### d. Interpretation
+
+Most taxa have higher abundance at low salinity, shown by points clustered on the left side of the panels where median salinity is around 0–10 ppt. Copepods and ostracods have the highest log-transformed abundance overall, but copepods occur across a wider range of salinity values. Ostracods appear more abundant at lower salinity and lower at higher salinity, suggesting abundance may decrease as salinity increases. Other taxa, like nematodes and annelids, stay low across most salinity values, with points clustered near zero on the y-axis.
 
 
 
