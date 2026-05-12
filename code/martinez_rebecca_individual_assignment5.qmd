@@ -1,0 +1,15 @@
+---
+title: "Individual Assignment 5"
+date: "11 May 2026"
+author: "Rebecca Martinez"
+format: 
+  pdf:
+    include-in-header: 
+       text: |
+         \usepackage{fvextra}
+         \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
+         \DefineVerbatimEnvironment{OutputCode}{Verbatim}{breaklines,commandchars=\\\{\}}
+execute:
+  message: false
+  warning: false
+---
