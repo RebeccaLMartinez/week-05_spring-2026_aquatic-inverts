@@ -306,9 +306,39 @@ copepods <- ggplot(data = copepod_data,
 
 
 ```
+  
+
+# 4. Problems
+
+## 1. Visualizing differences across sites in major taxon abundance
+
+### a. Plan the figure
+
+Goal: create a plot showing differences between sites in ostracod abundance.
+
+- x-axis: `site_full`
+- y-axis: `log_ave_lit`
+- geometry to represent average abundance/L: jittered points using `geom_jitter()`
+- geometry to represent medians: larger summary points using `stat_summary(fun = median)`
 
 
+### b. Wrangle data
 
+```{r ostracod wrangling}
 
+# create data frame for ostracod abundance
+ostracod_data <- aq_ins_clean |>
+  
+  # keep only ostracods
+  filter(taxon == "ostracod") |>
+  
+  # log + 1 transform average abundance per liter
+  mutate(log_ave_lit = log(ave_lit + 1))
+
+# display 10 random rows from ostracod data frame
+ostracod_data |>
+  slice_sample(n = 10)
+
+```
 
 
