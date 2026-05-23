@@ -390,6 +390,7 @@ ostracods <- ggplot(data = ostracod_data,
                                    hjust = 1),
         axis.title.x = element_blank())
 
+ostracods
 ```
 
 
